@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Propose Day</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fce4ec;
+            overflow: hidden;
+            position: relative;
+        }
+        .background-img {
+            position: absolute;
+            width: 50%; /* Medium size */
+            max-width: 600px;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.7;
+        }
+        .container {
+            position: absolute;
+            text-align: center;
+        }
+        .quote-box {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .quote {
+            position: absolute;
+            font-size: 34px;
+            font-weight: bold;
+            color: #d63384;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-color: rgb(255, 255, 255);
+        }
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/cover;
+            filter: invert(14%) sepia(99%) saturate(7482%) hue-rotate(355deg) brightness(98%) contrast(120%); /* Makes hearts red */
+            bottom: 0;
+            animation: floatUp 4s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            80% { opacity: 1; } /* Ensures hearts remain visible until 80% of screen height */
+            100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <img class="background-img" src="https://thumbs.dreamstime.com/b/twins-girls-sisters-linear-people-children-s-style-twins-girls-sisters-linear-vector-people-children-s-style-126315098.jpg" alt="Twins Illustration">
+    <div class="container">
+        <div class="quote-box">
+            <div class="quote" id="quote1">"I'm not gonna propose you but "</div>
+            <div class="quote" id="quote2">"You are the best part of my life!"</div>
+            <div class="quote" id="quote3">"Every moment with you is special."</div>
+            <div class="quote" id="quote4">"Happy Proposal Day Dear!!"</div>
+        </div>
+    </div>
+
+    <script>
+        let quotes = document.querySelectorAll('.quote');
+        let index = 0;
+        function showQuotes() {
+            quotes.forEach(q => q.style.opacity = '0');
+            quotes[index].style.opacity = '1';
+            index = (index + 1) % quotes.length;
+        }
+        setInterval(showQuotes, 3000);
+
+        function createHeart() {
+            let heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
