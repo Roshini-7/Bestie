@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chocolate Day Surprise</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://www.teacaramelshop.it/wp-content/uploads/2017/08/BCA500-CAFFETTINE.jpg') repeat;
+            background-size: 80px 80px;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            animation: backgroundMove 10s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .choco-button {
+            width: 200px;
+            height: 200px;
+            background: url('https://images.squarespace-cdn.com/content/v1/62552c3a49a17b0ef219893e/1657622340804-A5F8N5LL9KZ8OS35R0MJ/Anjali010420-4Original.jpg') no-repeat center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            color: #ffcc00;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s, opacity 1s;
+        }
+
+        .container:hover .choco-button {
+            transform: scale(1.1);
+        }
+
+        .quotes {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            font-size: 2.5em;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+            background: rgba(74, 11, 33, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" onclick="showQuotes()">
+        <div class="choco-button" id="chocoButton">Tap on me!!</div>
+        <div class="quotes" id="quote"></div>
+    </div>
+
+    <script>
+        let quotes = [
+            "Chocolate makes everything better!",
+            "Happiness is sharing chocolate with you!",
+            "You're sweeter than any chocolate!",
+            "A true friend is like chocolate – always comforting!",
+            "Every bite reminds me of our beautiful bond!",
+            "Happy Chocolate Day Dear 🍫💕"
+        ];
+        let index = 0;
+
+        function showQuotes() {
+            let quoteElement = document.getElementById('quote');
+            let chocoButton = document.getElementById('chocoButton');
+            chocoButton.style.opacity = '0'; // Hide "Tap on me!!"
+            displayNextQuote();
+        }
+
+        function displayNextQuote() {
+            if (index < quotes.length) {
+                let quoteElement = document.getElementById('quote');
+                quoteElement.innerHTML = quotes[index];
+                quoteElement.style.opacity = '1';
+                setTimeout(() => {
+                    quoteElement.style.opacity = '0';
+                    index++;
+                    setTimeout(displayNextQuote, 1000);
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
